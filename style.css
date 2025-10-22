@@ -1,43 +1,170 @@
-.hamburger-menu {
-
-    display: flex;
-
-    align-items: center;
-
-}
-
-.hamburger-icon {
-
-    width: 30px;
-
-    height: 3px;
-
-    background-color: #333;
-
-    margin-right: 10px;
-
-}
-
-.menu-items {
-
-    display: none;
-
-    list-style: none;
-
+*{
+    margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
+    font-family: 'open sans', sans-serif;
+}
+body{
+   height: 100vh;
+   background-color: darkblue;
+   
+}
+li{
+    list-style: none;
 }
 
-.menu-items li {
-
-    margin-bottom: 10px;
-
-}
-
-.menu-items a {
-
+a{
     text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
 
-    color: #333;
+a:hover{
+    color: orange;
+}
 
+/* Header Section */
+header{
+    position: relative;
+    padding: 0.5rem 0.5rem; /* збільшено відступ зверху/знизу для більшої зони затемнення */
+    z-index: 10; /* забезпечує відображення контенту поверх псевдо-елемента */
+}
+
+/* невелике затемнення для всієї верхньої навігації */
+header::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12));
+    pointer-events: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    z-index: 0;
+}
+
+/* щоб контент navbar був поверх затемнення */
+.navbar{
+   width: 100%;
+   height: 80px; /* збільшена висота navbar щоб затемнення покривало більше простору */
+   max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+   z-index: 1;
+}
+
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle_bth{
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.action_bth{
+    background-color: #ff8c00; /* яскравіше orange */
+    color: #fff;
+    padding: 0.6rem 1.2rem; /* трохи менша кнопка */
+    border: none;
+    outline: none;
+    border-radius: 22px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s;
+    box-shadow: 0 6px 16px rgba(255,140,0,0.16);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* невеликий ефект при наведенні */
+.action_bth:hover{
+    background-color: #fff;
+    color: #ff8c00;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255,140,0,0.22);
+    transition: .18s;
+}
+
+.action_bth:active{
+    transform: translateY(0) scale(0.98);
+}
+
+/* у випадаючому меню кнопка має займати весь простір і відповідати новому розміру */
+.dropdown_menu .action_bth{
+    width: 90%;
+    margin: 0.4rem auto;
+    justify-content: center;
+    padding: 0.6rem 1rem; /* підлаштовано під новий розмір кнопки */
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+/* Dropdown menu */
+.dropdown_menu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 88px; /* підлаштовано під нову висоту navbar */
+    height: 0;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.4s ease;
+}
+
+.dropdown_menu.open{
+   height: 240px;
+}
+
+.dropdown_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_bth{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive desing */
+
+@media(max-width: 992px){
+    .navbar .links,.navbar .action_bth{
+        display: none;
+    }
+    .navbar .toggle_bth{
+        display: block;
+    }
+
+    .dropdown_menu{
+        display: block;
+    }
+}
+
+@media(max-width: 576px) {
+    .dropdown_menu{
+        left: 2rem;
+        width: unset;
+    }
 }
