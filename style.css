@@ -301,7 +301,7 @@
 
             .section h1 {
                 font-size: 3.5rem;
-                padding: 0 20px;
+                padding: 0 40px;
             }
 
             .footer-container {
@@ -351,5 +351,5 @@
             justify-content: center;
             position: relative;
             border-color: #000000 3px;
-            
+
          }
