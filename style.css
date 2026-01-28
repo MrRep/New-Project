@@ -344,3 +344,12 @@
             align-items: center;
             justify-content: center;
         }
+
+
+        .Q-text{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            border-color: #000000 3px;
+            
+         }
